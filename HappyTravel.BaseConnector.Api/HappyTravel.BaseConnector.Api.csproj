@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>9</LangVersion>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <Description>Base controller - a set of controllers, service interfaces and various infrastructure elements for connectors</Description>
+    <Copyright></Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Alexey Shokarev</Authors>
+    <Company>HappyTravel</Company>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
+    <PackageReleaseNotes>Initial version</PackageReleaseNotes>
+    <Version>0.9.0</Version>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.20.4" />
+    <PackageReference Include="FloxDc.CacheFlow" Version="1.9.1" />
+    <PackageReference Include="FloxDc.CacheFlow.Json" Version="1.9.1" />
+    <PackageReference Include="HappyTravel.ConsulKeyValueClient.ConfigurationProvider" Version="1.6.0" />
+    <PackageReference Include="HappyTravel.EdoContracts" Version="2.2.4" />
+    <PackageReference Include="HappyTravel.ErrorHandling" Version="1.2.2" />
+    <PackageReference Include="HappyTravel.StdOutLogger" Version="1.5.1" />
+    <PackageReference Include="HappyTravel.Telemetry" Version="0.13.0" />
+    <PackageReference Include="HappyTravel.VaultClient" Version="1.1.0" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
+    <PackageReference Include="prometheus-net.AspNetCore" Version="4.1.1" />
+    <PackageReference Include="Sentry.AspNetCore" Version="3.8.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.2.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+</Project>
