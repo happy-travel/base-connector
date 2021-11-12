@@ -12,6 +12,7 @@
     <Authors>Alexey Shokarev</Authors>
     <Company>HappyTravel</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageVersion>0.9.0</PackageVersion>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
     <PackageReleaseNotes>Initial version</PackageReleaseNotes>
