@@ -4,10 +4,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HappyTravel.BaseConnector.Api.Services.Availabilities.Cancellations
+namespace HappyTravel.BaseConnector.Api.Services.Availabilities.Cancellations;
+
+public interface IDeadlineService
 {
-    public interface IDeadlineService
-    {
-        Task<Result<Deadline>> Get(string availabilityId, Guid roomContractSetId, CancellationToken cancellationToken);
-    }
+    Task<Result<Deadline>> Get(string availabilityId, Guid roomContractSetId, CancellationToken cancellationToken);
 }

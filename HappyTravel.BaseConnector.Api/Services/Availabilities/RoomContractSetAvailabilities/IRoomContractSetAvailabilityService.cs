@@ -4,10 +4,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HappyTravel.BaseConnector.Api.Services.Availabilities.RoomContractSetAvailabilities
+namespace HappyTravel.BaseConnector.Api.Services.Availabilities.RoomContractSetAvailabilities;
+
+public interface IRoomContractSetAvailabilityService
 {
-    public interface IRoomContractSetAvailabilityService
-    {
-        Task<Result<RoomContractSetAvailability>> Get(string availabilityId, Guid roomContractSetId, CancellationToken cancellationToken);
-    }
+    Task<Result<RoomContractSetAvailability>> Get(string availabilityId, Guid roomContractSetId, CancellationToken cancellationToken);
 }

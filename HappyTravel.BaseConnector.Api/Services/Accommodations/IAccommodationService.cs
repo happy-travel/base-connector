@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HappyTravel.BaseConnector.Api.Services.Accommodations
+namespace HappyTravel.BaseConnector.Api.Services.Accommodations;
+
+public interface IAccommodationService
 {
-    public interface IAccommodationService
-    {
-        Task<List<MultilingualAccommodation>> Get(int skip, int top, DateTime? modificationDate, CancellationToken cancellationToken);
-    }
+    Task<List<MultilingualAccommodation>> Get(int skip, int top, DateTime? modificationDate, CancellationToken cancellationToken);
 }
