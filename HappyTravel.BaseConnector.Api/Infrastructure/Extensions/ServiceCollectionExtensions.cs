@@ -18,101 +18,100 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Globalization;
 
-namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions
+namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
+
+public static class ServiceCollectionExtensions
 {
-    public static class ServiceCollectionExtensions
+    public static IServiceCollection AddBaseConnectorServices(this IServiceCollection services, IConfiguration configuration,
+        IHostEnvironment hostEnvironment, VaultClient.VaultClient vaultClient, string connectorName)
     {
-        public static IServiceCollection AddBaseConnectorServices(this IServiceCollection services, IConfiguration configuration, 
-            IHostEnvironment hostEnvironment, VaultClient.VaultClient vaultClient, string connectorName)
+        var serializationSettings = new JsonSerializerSettings
         {
-            var serializationSettings = new JsonSerializerSettings
+            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            Formatting = Formatting.None
+        };
+        JsonConvert.DefaultSettings = () => serializationSettings;
+
+        services.AddResponseCompression()
+            .AddCors()
+            .AddLocalization()
+            .AddMemoryCache()
+            .AddMemoryFlow()
+            .AddStackExchangeRedisCache(options => { options.Configuration = EnvironmentVariableHelper.Get("Redis:Endpoint", configuration); })
+            .AddDoubleFlow()
+            .AddCacheFlowJsonSerialization()
+            .AddWebEncoders()
+            .AddTracing(configuration, options =>
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                Formatting = Formatting.None
-            };
-            JsonConvert.DefaultSettings = () => serializationSettings;
-
-            services.AddResponseCompression()
-                .AddCors()
-                .AddLocalization()
-                .AddMemoryCache()
-                .AddMemoryFlow()
-                .AddStackExchangeRedisCache(options => { options.Configuration = EnvironmentVariableHelper.Get("Redis:Endpoint", configuration); })
-                .AddDoubleFlow()
-                .AddCacheFlowJsonSerialization()
-                .AddWebEncoders()
-                .AddTracing(configuration, options =>
-                {
-                    options.ServiceName = $"{hostEnvironment.ApplicationName}-{hostEnvironment.EnvironmentName}";
-                    options.JaegerHost = hostEnvironment.IsLocal()
-                        ? configuration.GetValue<string>("Jaeger:AgentHost")
-                        : configuration.GetValue<string>(configuration.GetValue<string>("Jaeger:AgentHost"));
-                    options.JaegerPort = hostEnvironment.IsLocal()
-                        ? configuration.GetValue<int>("Jaeger:AgentPort")
-                        : configuration.GetValue<int>(configuration.GetValue<string>("Jaeger:AgentPort"));
-                    options.RedisEndpoint = configuration.GetValue<string>(configuration.GetValue<string>("Redis:Endpoint"));
-                });
-
-            services.ConfigureAuthentication(configuration, vaultClient);
-
-            services.AddApiVersioning(options =>
-            {
-                options.AssumeDefaultVersionWhenUnspecified = false;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.ReportApiVersions = true;
+                options.ServiceName = $"{hostEnvironment.ApplicationName}-{hostEnvironment.EnvironmentName}";
+                options.JaegerHost = hostEnvironment.IsLocal()
+                    ? configuration.GetValue<string>("Jaeger:AgentHost")
+                    : configuration.GetValue<string>(configuration.GetValue<string>("Jaeger:AgentHost"));
+                options.JaegerPort = hostEnvironment.IsLocal()
+                    ? configuration.GetValue<int>("Jaeger:AgentPort")
+                    : configuration.GetValue<int>(configuration.GetValue<string>("Jaeger:AgentPort"));
+                options.RedisEndpoint = configuration.GetValue<string>(configuration.GetValue<string>("Redis:Endpoint"));
             });
 
-            services.AddMvcCore(options =>
-            {
-                options.Conventions.Add(new AuthorizeControllerModelConvention());
-            })
-                .AddAuthorization()
-                .AddControllersAsServices()
-                .AddMvcOptions(m => m.EnableEndpointRouting = true)
-                .AddFormatterMappings()
-                .AddNewtonsoftJson()
-                .AddApiExplorer()
-                .AddCacheTagHelper()
-                .AddDataAnnotations();
-            services.AddHttpContextAccessor();
-            services.AddOptions()
-                .Configure<RequestLocalizationOptions>(o =>
-                {
-                    o.DefaultRequestCulture = new RequestCulture("en");
-                    o.SupportedCultures = new[]
-                    {
-                        new CultureInfo("en")
-                    };
+        services.ConfigureAuthentication(configuration, vaultClient);
 
-                    o.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider { Options = o });
-                })
-                .Configure<FlowOptions>(options =>
-                {
-                    options.DataLoggingLevel = DataLogLevel.Normal;
-                    options.SuppressCacheExceptions = false;
-                    options.CacheKeyDelimiter = "::";
-                    options.CacheKeyPrefix = $"HappyTravel::{connectorName.Replace(" ", string.Empty)}";
-                });
-            services.AddProblemDetailsErrorHandling();
-
-            return services;
-        }
-
-
-        private static IServiceCollection ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration, IVaultClient vaultClient)
+        services.AddApiVersioning(options =>
         {
-            var authorityOptions = vaultClient.Get(configuration["Authority:Options"]).GetAwaiter().GetResult();
+            options.AssumeDefaultVersionWhenUnspecified = false;
+            options.DefaultApiVersion = new ApiVersion(1, 0);
+            options.ReportApiVersions = true;
+        });
 
-            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(options =>
+        services.AddMvcCore(options =>
+        {
+            options.Conventions.Add(new AuthorizeControllerModelConvention());
+        })
+            .AddAuthorization()
+            .AddControllersAsServices()
+            .AddMvcOptions(m => m.EnableEndpointRouting = true)
+            .AddFormatterMappings()
+            .AddNewtonsoftJson()
+            .AddApiExplorer()
+            .AddCacheTagHelper()
+            .AddDataAnnotations();
+        services.AddHttpContextAccessor();
+        services.AddOptions()
+            .Configure<RequestLocalizationOptions>(o =>
+            {
+                o.DefaultRequestCulture = new RequestCulture("en");
+                o.SupportedCultures = new[]
                 {
-                    options.Authority = authorityOptions["authorityUrl"];
-                    options.ApiName = authorityOptions["apiName"];
-                    options.RequireHttpsMetadata = true;
-                    options.SupportedTokens = SupportedTokens.Jwt;
-                });
+                        new CultureInfo("en")
+                };
 
-            return services;
-        }
+                o.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider { Options = o });
+            })
+            .Configure<FlowOptions>(options =>
+            {
+                options.DataLoggingLevel = DataLogLevel.Normal;
+                options.SuppressCacheExceptions = false;
+                options.CacheKeyDelimiter = "::";
+                options.CacheKeyPrefix = $"HappyTravel::{connectorName.Replace(" ", string.Empty)}";
+            });
+        services.AddProblemDetailsErrorHandling();
+
+        return services;
+    }
+
+
+    private static IServiceCollection ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration, IVaultClient vaultClient)
+    {
+        var authorityOptions = vaultClient.Get(configuration["Authority:Options"]).GetAwaiter().GetResult();
+
+        services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            .AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = authorityOptions["authorityUrl"];
+                options.ApiName = authorityOptions["apiName"];
+                options.RequireHttpsMetadata = true;
+                options.SupportedTokens = SupportedTokens.Jwt;
+            });
+
+        return services;
     }
 }

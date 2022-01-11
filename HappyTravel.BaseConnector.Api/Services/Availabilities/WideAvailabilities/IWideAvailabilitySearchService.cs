@@ -3,10 +3,9 @@ using HappyTravel.EdoContracts.Accommodations;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HappyTravel.BaseConnector.Api.Services.Availabilities.WideAvailabilities
+namespace HappyTravel.BaseConnector.Api.Services.Availabilities.WideAvailabilities;
+
+public interface IWideAvailabilitySearchService
 {
-    public interface IWideAvailabilitySearchService
-    {
-        Task<Result<Availability>> Get(AvailabilityRequest request, string languageCode, CancellationToken cancellationToken);
-    }
+    Task<Result<Availability>> Get(AvailabilityRequest request, string languageCode, CancellationToken cancellationToken);
 }
