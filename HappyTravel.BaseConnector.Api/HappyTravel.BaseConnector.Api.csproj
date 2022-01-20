@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Updated to .NET 6.0</PackageReleaseNotes>
-    <Version>1.0.0</Version>
+    <PackageReleaseNotes>Updated Telemetry version</PackageReleaseNotes>
+    <Version>1.0.1</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
