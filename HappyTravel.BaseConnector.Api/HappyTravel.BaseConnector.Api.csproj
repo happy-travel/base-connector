@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Updated Telemetry version</PackageReleaseNotes>
-    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Updated EdoContracts and Telemetry versions</PackageReleaseNotes>
+    <Version>1.0.2</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
