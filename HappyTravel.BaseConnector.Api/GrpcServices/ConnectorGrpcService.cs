@@ -19,10 +19,10 @@ using ProtoBuf.Grpc;
 
 namespace HappyTravel.BaseConnector.Api.GrpcServices;
 
-public class GrpcConnectorService : IGrpcConnectorService
+public class ConnectorGrpcService : IConnectorGrpcService
 {
-    public GrpcConnectorService(IWideAvailabilitySearchService wideAvailabilityService, IBookingService bookingService, 
-        ILogger<GrpcConnectorService> logger, IAccommodationAvailabilityService accommodationAvailabilityService, IRoomContractSetAvailabilityService roomContractSetAvailabilityService, IDeadlineService deadlineService)
+    public ConnectorGrpcService(IWideAvailabilitySearchService wideAvailabilityService, IBookingService bookingService, 
+        ILogger<ConnectorGrpcService> logger, IAccommodationAvailabilityService accommodationAvailabilityService, IRoomContractSetAvailabilityService roomContractSetAvailabilityService, IDeadlineService deadlineService)
     {
         _wideAvailabilityService = wideAvailabilityService;
         _bookingService = bookingService;
@@ -33,7 +33,7 @@ public class GrpcConnectorService : IGrpcConnectorService
     }
     
     
-    public async Task<WideAvailabilityResponse> GetAllAvailabilities(AvailabilityRequestSurrogate request, CallContext context)
+    public async Task<WideAvailabilityResponse> GetWideAvailability(AvailabilityRequestSurrogate request, CallContext context)
     {
         using var accommodationsScope = _logger.AddScopedValue("Accommodations", string.Join(',', request.AccommodationIds));
         using var roomsCountScope = _logger.AddScopedValue("RoomsCount", request.Rooms.Count);
@@ -54,7 +54,7 @@ public class GrpcConnectorService : IGrpcConnectorService
     }
 
 
-    public async Task<AccommodationAvailabilityResponse> GetAccommodationAvailabilities(AccommodationAvailabilityRequest request, CallContext context)
+    public async Task<AccommodationAvailabilityResponse> GetAccommodationAvailability(AccommodationAvailabilityRequest request, CallContext context)
     {
         using var accommodationScope = _logger.AddScopedValue("AccommodationId", request.AccommodationId);
         _logger.LogAccommodationRequestStarted(); 
@@ -154,7 +154,7 @@ public class GrpcConnectorService : IGrpcConnectorService
     }
 
 
-    public async Task<BookingInfoResponse> GetBookingInfo(BookingInfoRequest request, CallContext context)
+    public async Task<BookingInfoResponse> GetBooking(BookingInfoRequest request, CallContext context)
     {
         using var bookingReferenceCodeScope = _logger.AddScopedValue("BookingReferenceCode", request.ReferenceCode);
         _logger.LogBookingStatusRequestStarted();
@@ -182,5 +182,5 @@ public class GrpcConnectorService : IGrpcConnectorService
     private readonly IRoomContractSetAvailabilityService _roomContractSetAvailabilityService;
     private readonly IBookingService _bookingService;
     private readonly IDeadlineService _deadlineService;
-    private readonly ILogger<GrpcConnectorService> _logger;
+    private readonly ILogger<ConnectorGrpcService> _logger;
 }

@@ -40,7 +40,7 @@ public static class ApplicationBuilderExtensions
                 endpoints.MapControllers();
                 endpoints.MapMetrics().RequireHost($"*:{EnvironmentVariableHelper.GetPort("HTDC_METRICS_PORT")}");
                 endpoints.MapHealthChecks("/health").RequireHost($"*:{EnvironmentVariableHelper.GetPort("HTDC_HEALTH_PORT")}");
-                endpoints.MapGrpcService<GrpcConnectorService>();
+                endpoints.MapGrpcService<ConnectorGrpcService>();
             });
 
         app.UseHttpContextLogging(options => options.IgnoredPaths = new HashSet<string> { "/health", "/metrics" });
