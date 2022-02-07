@@ -101,6 +101,8 @@ public class GrpcConnectorService : IGrpcConnectorService
         var (_, isFailure, deadline, error) = await _deadlineService.Get(request.AvailabilityId, request.RoomContractSetId, context.CancellationToken);
         if(isFailure)
             _logger.LogDeadlineRequestFailed(error);
+        
+        _logger.LogDeadlineRequestCompleted();
 
         return new()
         {
