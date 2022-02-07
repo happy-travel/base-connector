@@ -5,6 +5,7 @@ using Prometheus;
 using System.Collections.Generic;
 using HappyTravel.BaseConnector.Api.GrpcServices;
 using HappyTravel.BaseConnector.Api.Infrastructure.Environment;
+using HappyTravel.EdoContracts.Grpc.Surrogates;
 
 namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
 
@@ -26,6 +27,8 @@ public static class ApplicationBuilderExtensions
                 await next();
             }
         });
+        
+        EdoContractsSurrogates.Register();
 
         app.UseRouting()
             .UseHttpMetrics()
