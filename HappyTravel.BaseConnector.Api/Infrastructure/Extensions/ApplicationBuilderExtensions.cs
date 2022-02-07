@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Prometheus;
 using System.Collections.Generic;
+using HappyTravel.BaseConnector.Api.Infrastructure.Environment;
 
 namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
 
@@ -25,16 +26,16 @@ public static class ApplicationBuilderExtensions
             }
         });
 
-        app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
         app.UseRouting()
             .UseHttpMetrics()
+            .UseGrpcMetrics()
             .UseAuthentication()
             .UseAuthorization()
             .UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapMetrics();
+                endpoints.MapMetrics().RequireHost($"*:{EnvironmentVariableHelper.GetPort("HTDC_METRICS_PORT")}");
+                endpoints.MapHealthChecks("/health").RequireHost($"*:{EnvironmentVariableHelper.GetPort("HTDC_HEALTH_PORT")}");
             });
 
         app.UseHttpContextLogging(options => options.IgnoredPaths = new HashSet<string> { "/health", "/metrics" });
