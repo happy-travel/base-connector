@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Prometheus;
 using System.Collections.Generic;
+using HappyTravel.BaseConnector.Api.GrpcServices;
 using HappyTravel.BaseConnector.Api.Infrastructure.Environment;
 
 namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
@@ -36,6 +37,7 @@ public static class ApplicationBuilderExtensions
                 endpoints.MapControllers();
                 endpoints.MapMetrics().RequireHost($"*:{EnvironmentVariableHelper.GetPort("HTDC_METRICS_PORT")}");
                 endpoints.MapHealthChecks("/health").RequireHost($"*:{EnvironmentVariableHelper.GetPort("HTDC_HEALTH_PORT")}");
+                endpoints.MapGrpcService<GrpcConnectorService>();
             });
 
         app.UseHttpContextLogging(options => options.IgnoredPaths = new HashSet<string> { "/health", "/metrics" });
