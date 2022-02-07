@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Prometheus;
 using System.Collections.Generic;
+using HappyTravel.BaseConnector.Api.GrpcServices;
 using HappyTravel.BaseConnector.Api.Infrastructure.Environment;
+using HappyTravel.EdoContracts.Grpc.Surrogates;
 
 namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
 
@@ -25,6 +27,8 @@ public static class ApplicationBuilderExtensions
                 await next();
             }
         });
+        
+        EdoContractsSurrogates.Register();
 
         app.UseRouting()
             .UseHttpMetrics()
@@ -36,6 +40,7 @@ public static class ApplicationBuilderExtensions
                 endpoints.MapControllers();
                 endpoints.MapMetrics().RequireHost($"*:{EnvironmentVariableHelper.GetPort("HTDC_METRICS_PORT")}");
                 endpoints.MapHealthChecks("/health").RequireHost($"*:{EnvironmentVariableHelper.GetPort("HTDC_HEALTH_PORT")}");
+                endpoints.MapGrpcService<ConnectorGrpcService>();
             });
 
         app.UseHttpContextLogging(options => options.IgnoredPaths = new HashSet<string> { "/health", "/metrics" });
