@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Added gRPC service</PackageReleaseNotes>
-    <Version>1.2.0</Version>
+    <PackageReleaseNotes>Fixed return type in IRoomContractSetAvailabilityService.Get</PackageReleaseNotes>
+    <Version>1.2.1</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
