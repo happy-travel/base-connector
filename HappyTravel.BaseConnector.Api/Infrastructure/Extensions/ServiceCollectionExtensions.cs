@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Globalization;
+using ProtoBuf.Grpc.Server;
 
 namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
 
@@ -94,6 +95,7 @@ public static class ServiceCollectionExtensions
                 options.CacheKeyPrefix = $"HappyTravel::{connectorName.Replace(" ", string.Empty)}";
             });
         services.AddProblemDetailsErrorHandling();
+        services.AddCodeFirstGrpc();
 
         return services;
     }
