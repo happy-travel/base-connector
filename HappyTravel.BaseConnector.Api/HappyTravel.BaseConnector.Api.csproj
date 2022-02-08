@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Fixed return type in IRoomContractSetAvailabilityService.Get</PackageReleaseNotes>
-    <Version>1.2.1</Version>
+    <PackageReleaseNotes>Added gRPC services registration</PackageReleaseNotes>
+    <Version>1.2.2</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
@@ -36,6 +36,7 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="5.0.2" />
     <PackageReference Include="prometheus-net.AspNetCore.Grpc" Version="5.0.2" />
+    <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
     <PackageReference Include="Sentry.AspNetCore" Version="3.13.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.2.3" />
