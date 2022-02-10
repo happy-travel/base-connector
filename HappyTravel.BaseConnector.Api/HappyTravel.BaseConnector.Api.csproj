@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Added gRPC services registration</PackageReleaseNotes>
-    <Version>1.2.2</Version>
+    <PackageReleaseNotes>Fixed accessing health check on webapi port</PackageReleaseNotes>
+    <Version>1.2.3</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
