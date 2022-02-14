@@ -13,7 +13,6 @@ public static class ApplicationBuilderExtensions
 {
     public static void ConfigureBaseConnector(this IApplicationBuilder app)
     {
-        app.UseHttpsRedirection();
         app.Use(async (context, next) =>
         {
             if (context.Request.Path.StartsWithSegments("/robots.txt"))
