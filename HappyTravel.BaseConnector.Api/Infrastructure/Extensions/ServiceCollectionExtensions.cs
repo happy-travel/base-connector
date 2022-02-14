@@ -6,7 +6,7 @@ using HappyTravel.BaseConnector.Api.Infrastructure.Environment;
 using HappyTravel.ErrorHandling.Extensions;
 using HappyTravel.Telemetry.Extensions;
 using HappyTravel.VaultClient;
-using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Localization.Routing;
@@ -16,8 +16,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Globalization;
 using ProtoBuf.Grpc.Server;
+using System.Collections.Generic;
+using System.Globalization;
 
 namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
 
@@ -105,13 +106,16 @@ public static class ServiceCollectionExtensions
     {
         var authorityOptions = vaultClient.Get(configuration["Authority:Options"]).GetAwaiter().GetResult();
 
-        services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-            .AddIdentityServerAuthentication(options =>
+        services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
             {
                 options.Authority = authorityOptions["authorityUrl"];
-                options.ApiName = authorityOptions["apiName"];
                 options.RequireHttpsMetadata = true;
-                options.SupportedTokens = SupportedTokens.Jwt;
+                options.TokenValidationParameters.ValidAudiences = new List<string>() { authorityOptions["apiName"] };
             });
 
         return services;
