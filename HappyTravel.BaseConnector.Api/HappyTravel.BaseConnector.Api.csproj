@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
     <PackageReleaseNotes>Removed using HTTPS redirection</PackageReleaseNotes>
-    <Version>1.2.4</Version>
+    <Version>1.2.5</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
