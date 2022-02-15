@@ -115,7 +115,7 @@ public static class ServiceCollectionExtensions
             {
                 options.Authority = authorityOptions["authorityUrl"];
                 options.RequireHttpsMetadata = true;
-                options.TokenValidationParameters.ValidAudiences = new List<string>() { authorityOptions["apiName"] };
+                options.Audience = authorityOptions["apiName"];
             });
 
         return services;
