@@ -33,3 +33,12 @@ private const string ConnectorName = "XXX Connector";
 
 public IConfiguration Configuration { get; }
 public IHostEnvironment HostEnvironment { get; }
+
+## Before installing remove the following packages
+
+HappyTravel.Telemetry
+HappyTravel.EdoContracts
+HappyTravel.VaultClient
+CSharpFunctionalExtensions
+
+These packages will be implicitely reinstalled by BaseConnector
