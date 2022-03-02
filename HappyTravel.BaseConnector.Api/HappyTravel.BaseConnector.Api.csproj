@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Updated EdoContracts version</PackageReleaseNotes>
-    <Version>1.2.7</Version>
+    <PackageReleaseNotes>Updated packages</PackageReleaseNotes>
+    <Version>1.2.8</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
