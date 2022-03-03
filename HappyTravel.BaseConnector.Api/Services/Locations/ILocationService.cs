@@ -9,5 +9,5 @@ namespace HappyTravel.BaseConnector.Api.Services.Locations;
 
 public interface ILocationService
 {
-    Task<List<Location>> Get(DateTime modified, LocationTypes locationType, int skip, int top, CancellationToken cancellationToken);
+    Task<List<Location>> Get(DateTimeOffset modified, LocationTypes locationType, int skip, int top, CancellationToken cancellationToken);
 }
