@@ -8,5 +8,5 @@ namespace HappyTravel.BaseConnector.Api.Services.Accommodations;
 
 public interface IAccommodationService
 {
-    Task<List<MultilingualAccommodation>> Get(int skip, int top, DateTime? modificationDate, CancellationToken cancellationToken);
+    Task<List<MultilingualAccommodation>> Get(int skip, int top, DateTimeOffset? modificationDate, CancellationToken cancellationToken);
 }
