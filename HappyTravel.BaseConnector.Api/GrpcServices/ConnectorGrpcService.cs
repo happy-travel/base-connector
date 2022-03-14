@@ -14,6 +14,7 @@ using HappyTravel.EdoContracts.Grpc.Models;
 using HappyTravel.EdoContracts.Grpc.Services;
 using HappyTravel.EdoContracts.Grpc.Surrogates;
 using HappyTravel.GrpcResultContract;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc;
 
@@ -127,8 +128,8 @@ public class ConnectorGrpcService : IConnectorGrpcService
         return new()
         {
             Result = isFailure
-                ? GrpcResult<Booking, string>.Failure(error.Detail)
-                : GrpcResult<Booking, string>.Success(bookingDetails)
+                ? GrpcResult<Booking, ProblemDetails>.Failure(error)
+                : GrpcResult<Booking, ProblemDetails>.Success(bookingDetails)
         };
     }
 
