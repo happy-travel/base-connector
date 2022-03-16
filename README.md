@@ -6,33 +6,47 @@ Version 0.9.0 supported .NET 5. From version 1.0.0 BaseConnector used .NET 6.
 
 BaseConnector includes a set of controllers, service interfaces for the connector. Therefore, you do not need to duplicate them in the connector. In the connector, you write a client to connect to the supplier, interact with the connector's internal database, implement services according to the interfaces from the BaseConnector.
 
-## Startup.cs
+## Program.cs
+```c#
+using HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
 
-public Startup(IConfiguration configuration, IHostEnvironment hostEnvironment)
+var builder = WebApplication.CreateBuilder(args);
+
+builder.ConfigureBaseConnectorHost("connector-name");
+builder.ConfigureServices("connector-name");
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    Configuration = configuration;
-    HostEnvironment = hostEnvironment;
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
-public void ConfigureServices(IServiceCollection services)
+app.ConfigureBaseConnector(builder.Configuration);
+app.Run();
+```
+
+## Startup.cs
+Not needed
+
+## ConfigureServicesExtension
+```c#
+public static void ConfigureServices(this WebApplicationBuilder builder, string connectorName)
 {
     using var vaultClient = new VaultClient.VaultClient(new VaultOptions
     {
-        BaseUrl = new Uri(EnvironmentVariableHelper.Get("Vault:Endpoint", Configuration)),
-        Engine = Configuration["Vault:Engine"],
-        Role = Configuration["Vault:Role"]
+        BaseUrl = new Uri(builder.Configuration[builder.Configuration["Vault:Endpoint"]]),
+        Engine = builder.Configuration["Vault:Engine"],
+        Role = builder.Configuration["Vault:Role"]
     });
-    vaultClient.Login(EnvironmentVariableHelper.Get("Vault:Token", Configuration)).GetAwaiter().GetResult();
+    vaultClient.Login(builder.Configuration["Vault:Token"]).GetAwaiter().GetResult();
 
     services.AddBaseConnectorServices(Configuration, HostEnvironment, vaultClient, ConnectorName);
     
     ***
 }
-
-private const string ConnectorName = "XXX Connector";
-
-public IConfiguration Configuration { get; }
-public IHostEnvironment HostEnvironment { get; }
+```
 
 ## Before installing remove the following packages
 
