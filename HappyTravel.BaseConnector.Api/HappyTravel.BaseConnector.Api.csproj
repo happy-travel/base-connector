@@ -37,7 +37,7 @@
     <PackageReference Include="prometheus-net.AspNetCore" Version="6.0.0" />
     <PackageReference Include="prometheus-net.AspNetCore.Grpc" Version="6.0.0" />
     <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
-    <PackageReference Include="Sentry.AspNetCore" Version="3.15.0" />
+    <PackageReference Include="Sentry.AspNetCore" Version="3.16.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.3.0" />
   </ItemGroup>
