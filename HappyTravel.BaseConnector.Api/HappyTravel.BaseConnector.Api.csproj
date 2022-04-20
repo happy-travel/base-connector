@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
     <PackageReleaseNotes>Update packages</PackageReleaseNotes>
-    <Version>1.4.4</Version>
+    <Version>1.4.5</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
