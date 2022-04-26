@@ -20,7 +20,7 @@
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.0" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.1" />
     <PackageReference Include="FloxDc.CacheFlow" Version="1.10.0" />
     <PackageReference Include="FloxDc.CacheFlow.Json" Version="1.10.0" />
     <PackageReference Include="HappyTravel.ConsulKeyValueClient.ConfigurationProvider" Version="1.6.3" />
