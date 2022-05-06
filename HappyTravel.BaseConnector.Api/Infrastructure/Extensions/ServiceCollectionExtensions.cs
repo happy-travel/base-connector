@@ -1,4 +1,5 @@
-﻿using CacheFlow.Json.Extensions;
+﻿using System;
+using CacheFlow.Json.Extensions;
 using FloxDc.CacheFlow;
 using FloxDc.CacheFlow.Extensions;
 using HappyTravel.BaseConnector.Api.Infrastructure.Conventions;
@@ -19,6 +20,7 @@ using Newtonsoft.Json.Serialization;
 using ProtoBuf.Grpc.Server;
 using System.Collections.Generic;
 using System.Globalization;
+using HappyTravel.BaseConnector.Api.Infrastructure.Options;
 
 namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
 
@@ -104,7 +106,7 @@ public static class ServiceCollectionExtensions
 
     private static IServiceCollection ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration, IVaultClient vaultClient)
     {
-        var authorityOptions = vaultClient.Get(configuration["Authority:Options"]).GetAwaiter().GetResult();
+        var authorityOptions = configuration.GetSection("Authority").Get<AuthorityOptions>();
 
         services.AddAuthentication(options =>
             {
@@ -113,9 +115,10 @@ public static class ServiceCollectionExtensions
             })
             .AddJwtBearer(options =>
             {
-                options.Authority = authorityOptions["authorityUrl"];
+                options.Authority = authorityOptions.AuthorityUrl;
                 options.RequireHttpsMetadata = true;
-                options.Audience = authorityOptions["apiName"];
+                options.Audience = authorityOptions.Audience;
+                options.AutomaticRefreshInterval = authorityOptions.AutomaticRefreshInterval;
             });
 
         return services;
