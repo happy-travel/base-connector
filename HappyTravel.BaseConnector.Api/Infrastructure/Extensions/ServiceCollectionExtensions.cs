@@ -57,7 +57,7 @@ public static class ServiceCollectionExtensions
                 options.RedisEndpoint = configuration.GetValue<string>(configuration.GetValue<string>("Redis:Endpoint"));
             });
 
-        services.ConfigureAuthentication(configuration, vaultClient);
+        services.ConfigureAuthentication(configuration);
 
         services.AddApiVersioning(options =>
         {
@@ -104,7 +104,7 @@ public static class ServiceCollectionExtensions
     }
 
 
-    private static IServiceCollection ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration, IVaultClient vaultClient)
+    private static IServiceCollection ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
         var authorityOptions = configuration.GetSection("Authority").Get<AuthorityOptions>();
 
