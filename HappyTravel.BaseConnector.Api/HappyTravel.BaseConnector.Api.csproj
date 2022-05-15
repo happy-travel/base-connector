@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Moved identity settings to Consul, added refresh keys options</PackageReleaseNotes>
-    <Version>1.5.1</Version>
+    <PackageReleaseNotes>Updated EdoContracts</PackageReleaseNotes>
+    <Version>1.5.2</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
