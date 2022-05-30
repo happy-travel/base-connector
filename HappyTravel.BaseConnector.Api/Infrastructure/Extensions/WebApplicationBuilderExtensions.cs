@@ -16,6 +16,13 @@ public static class WebApplicationBuilderExtensions
 {
     public static void ConfigureBaseConnectorHost(this WebApplicationBuilder builder, string connectorName)
     {
+        #region Configure Configuration
+
+        builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
+        #endregion
+
         #region Configure Consul
         
         var consulHttpAddr = builder.Configuration.GetValue<string>("CONSUL_HTTP_ADDR");
