@@ -16,11 +16,11 @@
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
     <PackageReleaseNotes>Updated EdoContracts</PackageReleaseNotes>
-    <Version>1.5.5</Version>
+    <Version>1.5.6</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.2" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.3" />
     <PackageReference Include="FloxDc.CacheFlow" Version="1.10.0" />
     <PackageReference Include="FloxDc.CacheFlow.Json" Version="1.10.0" />
     <PackageReference Include="HappyTravel.ConsulKeyValueClient.ConfigurationProvider" Version="1.6.3" />
