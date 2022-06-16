@@ -57,8 +57,6 @@ public static class ServiceCollectionExtensions
                 options.RedisEndpoint = configuration.GetValue<string>(configuration.GetValue<string>("Redis:Endpoint"));
             });
 
-        services.ConfigureAuthentication(configuration);
-
         services.AddApiVersioning(options =>
         {
             options.AssumeDefaultVersionWhenUnspecified = false;
@@ -99,27 +97,6 @@ public static class ServiceCollectionExtensions
             });
         services.AddProblemDetailsErrorHandling();
         services.AddCodeFirstGrpc();
-
-        return services;
-    }
-
-
-    private static IServiceCollection ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
-    {
-        var authorityOptions = configuration.GetSection("Authority").Get<AuthorityOptions>();
-
-        services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.Authority = authorityOptions.AuthorityUrl;
-                options.RequireHttpsMetadata = true;
-                options.Audience = authorityOptions.Audience;
-                options.AutomaticRefreshInterval = authorityOptions.AutomaticRefreshInterval;
-            });
 
         return services;
     }

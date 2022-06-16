@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Using Net6 feature - WebApplicationBuilder</PackageReleaseNotes>
-    <Version>1.6.0</Version>
+    <PackageReleaseNotes>Removed auth settings</PackageReleaseNotes>
+    <Version>1.6.1</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
