@@ -1,9 +1,6 @@
-﻿using HappyTravel.StdOutLogger.Extensions;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Prometheus;
-using System.Collections.Generic;
 using HappyTravel.BaseConnector.Api.GrpcServices;
-using HappyTravel.BaseConnector.Api.Infrastructure.Environment;
 using HappyTravel.BaseConnector.Api.Infrastructure.Middlewares;
 using HappyTravel.EdoContracts.Grpc.Surrogates;
 using Microsoft.Extensions.Configuration;
@@ -28,10 +25,6 @@ public static class ApplicationBuilderExtensions
                 endpoints.MapMetrics().RequireHost($"*:{configuration.GetValue<int>("HTDC_METRICS_PORT")}");
                 endpoints.MapHealthChecks("/health").RequireHost($"*:{configuration.GetValue<int>("HTDC_HEALTH_PORT")}");
                 endpoints.MapGrpcService<ConnectorGrpcService>();
-            })
-            .UseHttpContextLogging(options =>
-            {
-                options.IgnoredPaths = new HashSet<string> {"/health", "/metrics"};
             });
     }
 
