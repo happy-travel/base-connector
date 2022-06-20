@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
     <PackageReleaseNotes>Removed auth settings</PackageReleaseNotes>
-    <Version>1.6.7</Version>
+    <Version>1.6.8</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
@@ -25,10 +25,10 @@
     <PackageReference Include="FloxDc.CacheFlow.Json" Version="1.10.0" />
     <PackageReference Include="HappyTravel.EdoContracts" Version="2.6.0" />
     <PackageReference Include="HappyTravel.ErrorHandling" Version="1.2.3" />
-    <PackageReference Include="HappyTravel.Infrastructure" Version="0.10.0" />
+    <PackageReference Include="HappyTravel.Infrastructure" Version="1.0.0" />
     <PackageReference Include="HappyTravel.VaultClient" Version="1.2.0" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.6" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
