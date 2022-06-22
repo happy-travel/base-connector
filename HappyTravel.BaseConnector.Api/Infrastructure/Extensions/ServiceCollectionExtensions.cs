@@ -1,13 +1,10 @@
-﻿using System;
-using CacheFlow.Json.Extensions;
+﻿using CacheFlow.Json.Extensions;
 using FloxDc.CacheFlow;
 using FloxDc.CacheFlow.Extensions;
 using HappyTravel.BaseConnector.Api.Infrastructure.Conventions;
 using HappyTravel.BaseConnector.Api.Infrastructure.Environment;
 using HappyTravel.ErrorHandling.Extensions;
 using HappyTravel.Telemetry.Extensions;
-using HappyTravel.VaultClient;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Localization.Routing;
@@ -18,9 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using ProtoBuf.Grpc.Server;
-using System.Collections.Generic;
 using System.Globalization;
-using HappyTravel.BaseConnector.Api.Infrastructure.Options;
 
 namespace HappyTravel.BaseConnector.Api.Infrastructure.Extensions;
 
