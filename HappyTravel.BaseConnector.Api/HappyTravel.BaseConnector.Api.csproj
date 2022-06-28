@@ -16,11 +16,11 @@
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
     <PackageReleaseNotes>Removed auth settings</PackageReleaseNotes>
-    <Version>1.6.12</Version>
+    <Version>1.6.13</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.3" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.4" />
     <PackageReference Include="FloxDc.CacheFlow" Version="1.10.0" />
     <PackageReference Include="FloxDc.CacheFlow.Json" Version="1.10.0" />
     <PackageReference Include="HappyTravel.EdoContracts" Version="2.6.0" />
