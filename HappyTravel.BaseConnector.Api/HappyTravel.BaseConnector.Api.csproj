@@ -23,7 +23,7 @@
     <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.4" />
     <PackageReference Include="FloxDc.CacheFlow" Version="1.10.0" />
     <PackageReference Include="FloxDc.CacheFlow.Json" Version="1.10.0" />
-    <PackageReference Include="HappyTravel.EdoContracts" Version="2.6.0" />
+    <PackageReference Include="HappyTravel.EdoContracts" Version="2.6.1" />
     <PackageReference Include="HappyTravel.ErrorHandling" Version="1.2.3" />
     <PackageReference Include="HappyTravel.Infrastructure" Version="1.1.2" />
     <PackageReference Include="HappyTravel.VaultClient" Version="1.2.0" />
