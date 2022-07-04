@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Removed auth settings</PackageReleaseNotes>
-    <Version>1.6.13</Version>
+    <PackageReleaseNotes>Enabled response compression</PackageReleaseNotes>
+    <Version>1.7.0</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
