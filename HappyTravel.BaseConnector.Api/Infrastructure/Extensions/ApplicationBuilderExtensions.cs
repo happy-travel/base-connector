@@ -19,6 +19,7 @@ public static class ApplicationBuilderExtensions
             .UseGrpcMetrics()
             .UseAuthentication()
             .UseAuthorization()
+            .UseResponseCompression()
             .UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
