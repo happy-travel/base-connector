@@ -19,4 +19,17 @@ public static class ProblemDetailsBuilder
 
         return Result.Failure<T, ProblemDetails>(details);
     }
+    
+    
+    public static Result<T, ProblemDetails> CreateFailureResult<T>(string message, SearchFailureCodes code)
+    {
+        var details = new ProblemDetails
+        {
+            Detail = message,
+            Status = (int)HttpStatusCode.BadRequest
+        };
+        details.Extensions.AddSearchFailureCode(code);
+
+        return Result.Failure<T, ProblemDetails>(details);
+    }
 }
