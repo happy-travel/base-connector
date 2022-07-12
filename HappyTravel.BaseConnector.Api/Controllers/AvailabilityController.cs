@@ -82,8 +82,8 @@ public class AvailabilityController : BaseController
             return Ok(availability);
         }
 
-        _logger.LogAccommodationRequestFailed(error);
-        return BadRequestWithProblemDetails(error);
+        _logger.LogAccommodationRequestFailed(error.Detail);
+        return BadRequest(error);
     }
 
 

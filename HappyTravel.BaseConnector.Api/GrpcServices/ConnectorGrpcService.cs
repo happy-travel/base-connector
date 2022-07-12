@@ -62,15 +62,15 @@ public class ConnectorGrpcService : IConnectorGrpcService
             
         var (_, isFailure, result, error) = await _accommodationAvailabilityService.Get(request.AvailabilityId, request.AccommodationId, context.CancellationToken);
         if (isFailure)
-            _logger.LogAccommodationRequestFailed(error);
+            _logger.LogAccommodationRequestFailed(error.Detail);
 
         _logger.LogAccommodationRequestCompleted();
         
         return new()
         {
             Result = isFailure
-                ? GrpcResult<AccommodationAvailability, string>.Failure(error)
-                : GrpcResult<AccommodationAvailability, string>.Success(result)
+                ? GrpcResult<AccommodationAvailability, ProblemDetails>.Failure(error)
+                : GrpcResult<AccommodationAvailability, ProblemDetails>.Success(result)
         };
     }
 
