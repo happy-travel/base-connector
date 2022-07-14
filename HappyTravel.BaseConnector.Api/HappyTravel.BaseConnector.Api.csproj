@@ -15,8 +15,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/happy-travel/base-connector</PackageProjectUrl>
     <RepositoryUrl>https://github.com/happy-travel/base-connector</RepositoryUrl>
-    <PackageReleaseNotes>Add ProblemDetails extensions and helpers for failure result</PackageReleaseNotes>
-    <Version>1.8.1</Version>
+    <PackageReleaseNotes>Remove ProblemDetails helper (duplicate code)</PackageReleaseNotes>
+    <Version>1.8.2</Version>
     <IsPackable>true</IsPackable>
   </PropertyGroup>
   <ItemGroup>
