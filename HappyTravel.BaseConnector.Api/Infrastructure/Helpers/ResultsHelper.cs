@@ -8,7 +8,7 @@ namespace HappyTravel.BaseConnector.Api.Infrastructure.Helpers;
 
 public static class ResultsHelper
 {
-    private static Result<T, ProblemDetails> CreateFailureResult<T>(string message, BookingFailureCodes code)
+    public static Result<T, ProblemDetails> CreateFailureResult<T>(string message, BookingFailureCodes code)
     {
         var details = new ProblemDetails
         {
@@ -21,7 +21,7 @@ public static class ResultsHelper
     }
     
     
-    private static Result<T, ProblemDetails> CreateFailureResult<T>(string message, SearchFailureCodes code)
+    public static Result<T, ProblemDetails> CreateFailureResult<T>(string message, SearchFailureCodes code)
     {
         var details = new ProblemDetails
         {
